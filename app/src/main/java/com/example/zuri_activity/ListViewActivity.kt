@@ -9,26 +9,20 @@ import com.example.zuri_activity.databinding.ActivityMainBinding
 
 class ListViewActivity : AppCompatActivity() {
 
-    var Binding: ActivityMainBinding? =null
-    var adapter:FactAdapter?=null
+    lateinit var binding:ActivityListViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view)
-        var listView1=findViewById<ListView>(R.id.listView)
-        Binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(Binding?.root)
-        adapter=FactAdapter(this,data.funfacts)
-        listView1.adapter=adapter
+        binding = ActivityListViewBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
+        binding.listView.let {
+            it.adapter = FactAdapter(this@ListViewActivity, data.funfacts)
+            it.divider = null
+        }
 
 
 
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Binding=null
-    }
-
 
 
 }
